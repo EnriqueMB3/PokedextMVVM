@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:helper="clr-namespace:PokedextMVVM.Helpers"
+             mc:Ignorable="d"
+             x:Class="PokedextMVVM.Views.PokemonView" NavigationPage.HasNavigationBar="False"  >
+    <ContentPage.Resources>
+        <helper:NumeroToImageConverter x:Key="convertidor1"></helper:NumeroToImageConverter>
+        <helper:TypeToIconType x:Key="typo"></helper:TypeToIconType>
+        <helper:TypeToBackgroundConverter x:Key="back"></helper:TypeToBackgroundConverter>
+        <helper:FirstLetterACapitalLetter x:Key="firstMayus"></helper:FirstLetterACapitalLetter>
+        <helper:NullToBoolConverter x:Key="bit"></helper:NullToBoolConverter>
+
+    </ContentPage.Resources>
+    <ScrollView>
+    <StackLayout  >
+
+            <AbsoluteLayout >
+            <Image Source="{Binding Tipo1, Converter={StaticResource back}}" HeightRequest="210" MinimumWidthRequest="400" WidthRequest="400" Aspect="Fill"></Image>
+                <StackLayout HorizontalOptions="CenterAndExpand" WidthRequest="400" TranslationY="20" >
+                    
+                <Image Source="Iconos/logo_splash" WidthRequest="30" ></Image>
+                </StackLayout>  
+        </AbsoluteLayout>
+        
+
+    
+        <StackLayout TranslationY="-120"  >
+
+                
+               
+            <Frame Padding="20" BackgroundColor="White" TranslationY="70" HasShadow="True" HorizontalOptions="Center" WidthRequest="120" CornerRadius="10" >
+                    <StackLayout HorizontalOptions="Center">
+
+                        <Label Text="{Binding Nombre, Converter={StaticResource firstMayus}}" TextColor="#B0C0CE" FontAttributes="Bold" FontSize="Subtitle"></Label>
+                   
+                    <Frame HeightRequest="15"  Padding="5" VerticalOptions="CenterAndExpand" HasShadow="False" WidthRequest="40"  CornerRadius="15" BackgroundColor="#EEEEEE">
+
+            <Label  FontSize="Micro" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="{Binding Numero, StringFormat='#{0}'}" TextColor="#B0C0CE"></Label>
+                        </Frame>
+                    
+                </StackLayout>
+        </Frame>
+                <Image HeightRequest="100" TranslationY="-110"  HorizontalOptions="Center" Source="{Binding Numero, Converter={StaticResource convertidor1}}"></Image>
+
+            <StackLayout Padding="20,0,20,0" TranslationY="-20">
+
+                    <Label Text="{Binding Categoria}" HorizontalOptions="Center" Margin="0,0,0,10" FontAttributes="Bold" TextColor="#B0C0CE"></Label>
+                    <Label Text="{Binding Descripcion}" TextColor="#D0D3D6" HorizontalTextAlignment="Center"></Label>
+            </StackLayout>
+                <StackLayout Padding="40,0,40,0">
+                    <BoxView Color="#EEEEEE" HeightRequest="2" WidthRequest="100">
+                    </BoxView>
+                 
+                        
+                    <StackLayout   HorizontalOptions="CenterAndExpand" Margin="0,5,0,0" Orientation="Horizontal">
+                        <StackLayout  HorizontalOptions="Center" Margin="0,0,20,0">
+                        <Label Text="Altura" TextColor="#B0C0CE" FontAttributes="Bold"></Label>
+                            <Label Text="{Binding Altura, StringFormat='{0} in'}" TextColor="#D0D3D6" HorizontalOptions="Center"></Label>
+                            
+                        </StackLayout>
+                        <BoxView Color="#EEEEEE" HeightRequest="50" WidthRequest="2">
+                        </BoxView>
+                        <FlexLayout Margin="10,0,10,0">
+                            
+                        <StackLayout Margin="10,0,10,0">
+                        <Image Source="{Binding Tipo1,Converter={StaticResource typo}}" HeightRequest="30"></Image>
+                            <Label Text="{Binding Tipo1}" TextColor="#B0C0CE" FontAttributes="Bold"></Label>    
+                        </StackLayout>
+                            <StackLayout Margin="10,0,0,0" IsVisible="{Binding Tipo2, Converter={StaticResource bit}}" >
+                            <Image Source="{Binding Tipo2,Converter={StaticResource typo}}" HeightRequest="30"></Image>
+                            <Label Text="{Binding Tipo2}" TextColor="#B0C0CE" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        </FlexLayout>
+                        
+                        <BoxView Color="#EEEEEE" HeightRequest="50" WidthRequest="2">
+                        </BoxView>
+                        <StackLayout Margin="20,0,0,0">
+                            <Label Text="Peso" TextColor="#B0C0CE" FontAttributes="Bold"></Label>
+                            <Label Text="{Binding Peso, StringFormat='{0} oz'}" TextColor="#D0D3D6" HorizontalOptions="Center"></Label>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"   HorizontalOptions="Center" Margin="0,20,0,0">
+                        <StackLayout IsVisible="{Binding Preevolucion, Converter={StaticResource bit}}" >
+                        <Image HeightRequest="80"  WidthRequest="80" Source="{Binding Preevolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
+                        <Label Text="Preevolucion" HorizontalTextAlignment="Center" TextColor="#B0C0CE"></Label>
+                            
+                        </StackLayout>
+
+                        <StackLayout Margin="20,0,0,0" IsVisible="{Binding Evolucion, Converter={StaticResource bit}}" >
+                            <Image HeightRequest="80" WidthRequest="80" Source="{Binding Evolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
+                            <Label Text="Evolucion" HorizontalTextAlignment="Center" TextColor="#B0C0CE" ></Label>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                   
+                    <StackLayout HorizontalOptions="Center" Margin="0,40,0,0">
+                        <Image Source="Fondo/logo" HeightRequest="20"></Image>
+                        <Label HorizontalTextAlignment="Center"  FontSize="Micro">Made by Enrique Martinez</Label>
+                    </StackLayout>
+                
+                </StackLayout>
+            </StackLayout>
+
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

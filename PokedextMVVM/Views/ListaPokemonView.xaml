@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:h="clr-namespace:PokedextMVVM.Helpers"
+             xmlns:vm="clr-namespace:PokedextMVVM.ViewModels"
+             x:Class="PokedextMVVM.Views.ListaPokemonView"
+             x:Name="ventana" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <h:NumeroToImageConverter x:Key="convertidor"></h:NumeroToImageConverter>
+        <h:FirstLetterACapitalLetter x:Key="firstMayus"></h:FirstLetterACapitalLetter>
+
+      
+
+    </ContentPage.Resources>
+    
+    
+    
+    <ContentPage.BindingContext>
+        <vm:ListaPokemonViewModel></vm:ListaPokemonViewModel>
+    </ContentPage.BindingContext>
+    <Grid>
+
+        <StackLayout >
+            
+            <!--Barra de logo-->
+            <Frame BackgroundColor="Accent" Padding="10">
+                <Image Source="Iconos/logo_splash" HeightRequest="25"></Image>
+            </Frame> 
+            <!--Searchbar-->
+            <SearchBar Margin="15" TextChanged="search1_TextChanged" x:Name="search1" SearchCommand="{Binding FiltrarCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference search1}}"></SearchBar>
+            
+            <!--Lista-->
+            
+            <!--<ListView SelectionMode="None" RowHeight="70" VerticalOptions="FillAndExpand" ItemsSource="{Binding Lista}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                     
+                            
+                        <ViewCell   >
+                           
+                            <FlexLayout  VerticalOptions="CenterAndExpand"   Direction="Row">
+                                <FlexLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ventana}, Path= BindingContext.VerPokemonCommand}"  CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </FlexLayout.GestureRecognizers>
+                                <Frame HeightRequest="25" Margin="10,20,0,0" Padding="5" VerticalOptions="CenterAndExpand" HasShadow="False" WidthRequest="50"  CornerRadius="20" BackgroundColor="#EEEEEE">
+
+                                    <Label  FontSize="Micro" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="{Binding Numero, StringFormat='#{0}'}" TextColor="#B0C0CE"></Label>
+                                </Frame>
+                                <AbsoluteLayout>
+                                    <Image Margin="15, 0,0,0" HeightRequest="60" WidthRequest="60" VerticalOptions="Center"   Source="{Binding Numero, Converter={StaticResource convertidor}, ConverterParameter='icono'}"></Image>
+                                </AbsoluteLayout>
+                                <AbsoluteLayout>
+                                    <Label Margin="10,20, 0,0"   TextColor="#B0C0CE" FontSize="Small" FontAttributes="Bold"  Text="{Binding Nombre, Converter={StaticResource firstMayus}}" > </Label>
+                                </AbsoluteLayout>
+                                
+                            </FlexLayout>
+                     
+                        </ViewCell>
+
+                       
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+            <CollectionView ItemsSource="{Binding Lista}"    >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout  VerticalItemSpacing="10" HorizontalItemSpacing="2" Orientation="Vertical" Span="3"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+
+
+                    <DataTemplate>
+
+
+
+                        <StackLayout  >
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference ventana}, Path= BindingContext.VerPokemonCommand}"  CommandParameter="{Binding .}"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+
+                                            <Image  HeightRequest="80" WidthRequest="80" VerticalOptions="Center"   Source="{Binding Numero, Converter={StaticResource convertidor}, ConverterParameter='icono'}"></Image>
+                                 
+                                        
+                                            <Label  HorizontalTextAlignment="Center" TextColor="#B0C0CE" FontSize="Small" FontAttributes="Bold"  Text="{Binding Nombre, Converter={StaticResource firstMayus}}" ></Label>
+                                        
+                            <Frame Margin="40,0,40,0" Padding="5" VerticalOptions="CenterAndExpand" HasShadow="False" CornerRadius="20" BackgroundColor="#EEEEEE">
+
+                                <Label  FontSize="Micro" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Text="{Binding Numero, StringFormat='#{0}'}" TextColor="#B0C0CE"></Label>
+                            </Frame>
+
+                        </StackLayout>
+
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
