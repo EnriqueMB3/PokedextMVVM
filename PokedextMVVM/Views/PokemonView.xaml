@@ -43,9 +43,9 @@
                     
                 </StackLayout>
         </Frame>
-                <Image HeightRequest="100" TranslationY="-110"  HorizontalOptions="Center" Source="{Binding Numero, Converter={StaticResource convertidor1}}"></Image>
+                <Image HeightRequest="140" WidthRequest="140" TranslationY="-140"  HorizontalOptions="Center" Source="{Binding Numero, Converter={StaticResource convertidor1}}"></Image>
 
-            <StackLayout Padding="20,0,20,0" TranslationY="-20">
+            <StackLayout Padding="20,0,20,0" TranslationY="-60">
 
                     <Label Text="{Binding Categoria}" HorizontalOptions="Center" Margin="0,0,0,10" FontAttributes="Bold" TextColor="#B0C0CE"></Label>
                     <Label Text="{Binding Descripcion}" TextColor="#D0D3D6" HorizontalTextAlignment="Center"></Label>
@@ -86,13 +86,13 @@
 
                     <StackLayout Orientation="Horizontal"   HorizontalOptions="Center" Margin="0,20,0,0">
                         <StackLayout IsVisible="{Binding Preevolucion, Converter={StaticResource bit}}" >
-                        <Image HeightRequest="80"  WidthRequest="80" Source="{Binding Preevolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
+                            <Image HeightRequest="100" WidthRequest="100" Source="{Binding Preevolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
                         <Label Text="Preevolucion" HorizontalTextAlignment="Center" TextColor="#B0C0CE"></Label>
                             
                         </StackLayout>
 
                         <StackLayout Margin="20,0,0,0" IsVisible="{Binding Evolucion, Converter={StaticResource bit}}" >
-                            <Image HeightRequest="80" WidthRequest="80" Source="{Binding Evolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
+                            <Image HeightRequest="100" WidthRequest="100" Source="{Binding Evolucion,Converter={StaticResource convertidor1}, ConverterParameter='icono'}"></Image>
                             <Label Text="Evolucion" HorizontalTextAlignment="Center" TextColor="#B0C0CE" ></Label>
 
                         </StackLayout>

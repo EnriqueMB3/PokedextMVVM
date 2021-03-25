@@ -17,14 +17,17 @@ namespace PokedextMVVM.Helpers
             if (param == "icono")
             {
                 //return ImageSource.FromFile($"{Environment.GetFolderPath(Environment.SpecialFolder.Personal)}/iconos/{num}.png");
-                return ImageSource.FromUri(new Uri($"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{num}.png"));
+                return ImageSource.FromUri(new Uri($"https://raw.githubusercontent.com/ZeChrales/PogoAssets/master/pokemon_icons/pokemon_icon_{num.ToString("000")}_00.png"));
+
+                //return ImageSource.FromUri(new Uri($"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{num}.png"));
             }
             else
             {
                 //if (num>640)
                 //{
 
-                return ImageSource.FromUri(new Uri($"https://assets.pokemon.com/assets/cms2/img/pokedex/full/{num.ToString("000")}.png"));
+                //return ImageSource.FromUri(new Uri($"https://assets.pokemon.com/assets/cms2/img/pokedex/full/{num.ToString("000")}.png"));
+                return ImageSource.FromUri(new Uri($"https://raw.githubusercontent.com/ZeChrales/PogoAssets/master/pokemon_icons/pokemon_icon_{num.ToString("000")}_00.png"));
                 //}
                 //else
                 //{
